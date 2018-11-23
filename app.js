@@ -7,11 +7,9 @@ const mongoose = require('mongoose');
 const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
 
-mongoose.connect('mongodb://node-shop:' +
-    process.env.MONGO_ATLAS_PW +
-    'p@node-rest-shop-shard-00-00-nplz3.mongodb.net:27017,node-rest-shop-shard-00-01-nplz3.mongodb.net:27017,node-rest-shop-shard-00-02-nplz3.mongodb.net:27017/test?ssl=true&replicaSet=node-rest-shop-shard-0&authSource=admin&retryWrites=true',
+mongoose.connect('mongodb://node-shop:node-shop@node-rest-shop-shard-00-00-nplz3.mongodb.net:27017,node-rest-shop-shard-00-01-nplz3.mongodb.net:27017,node-rest-shop-shard-00-02-nplz3.mongodb.net:27017/test?ssl=true&replicaSet=node-rest-shop-shard-0&authSource=admin&retryWrites=true',
     {
-        useMongoClient: true
+        useNewUrlParser: true
     }
 );
 
