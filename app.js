@@ -12,6 +12,7 @@ mongoose.connect('mongodb://node-shop:node-shop@node-rest-shop-shard-00-00-nplz3
         useNewUrlParser: true
     }
 );
+mongoose.Promise = global.Promise;
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
