@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-
 const mongoose = require('mongoose');
+
 const Order = require('../modals/order');
 const Product = require('../modals/product');
 router.get('/', (req, res, next) => {
