@@ -15,6 +15,7 @@ mongoose.connect('mongodb://node-shop:node-shop@node-rest-shop-shard-00-00-nplz3
 mongoose.Promise = global.Promise;
 
 app.use(morgan('dev'));
+app.use('/uploads',express.static('uploads'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
