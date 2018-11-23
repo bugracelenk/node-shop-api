@@ -8,6 +8,7 @@ router.get('/', (req, res, next) => {
   Order
     .find()
     .select('product quantity _id')
+    .populate('product')
     .exec()
     .then(docs => {
       const response = {
@@ -74,6 +75,7 @@ router.post('/', (req, res, next) => {
 router.get('/:orderId', (req, res, next) => {
   Order.findById(req.params.orderId)
     .select('quantity _id product')
+    .populate('product', "_id name price")
     .exec()
     .then(order => {
       if(!order){
