@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+const checkAuth = require('../middleware/check-auth');
 
 const Order = require('../modals/order');
 const Product = require('../modals/product');
-router.get('/', (req, res, next) => {
+router.get('/', checkAuth, (req, res, next) => {
   Order
     .find()
     .select('product quantity _id')
@@ -39,7 +40,7 @@ router.get('/', (req, res, next) => {
     });
 });
 
-router.post('/', (req, res, next) => {
+router.post('/', checkAuth, (req, res, next) => {
   //first checks if productId is in db if in db creates the order if it's not throwing error message.
   Product.findById(req.body.productId)
     .then(product => {
@@ -72,7 +73,7 @@ router.post('/', (req, res, next) => {
     });
 });
 
-router.get('/:orderId', (req, res, next) => {
+router.get('/:orderId', checkAuth, (req, res, next) => {
   Order.findById(req.params.orderId)
     .select('quantity _id product')
     .populate('product', "_id name price")
@@ -98,7 +99,7 @@ router.get('/:orderId', (req, res, next) => {
     });
 });
 
-router.delete('/:orderId', (req, res, next) => {
+router.delete('/:orderId', checkAuth, (req, res, next) => {
   Order.remove({ _id: req.params.orderId })
     .exec()
     .then(order => {
